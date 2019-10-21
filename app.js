@@ -1,13 +1,12 @@
 const express = require('express')
 const met = require('./met')
+const path = require('path')
 const app = express()
 
 const port = process.env.PORT || 3000
 
 app.get('/', function(req, res) {
-  res.send({
-    info: 'Bienvenido a la pagina del Museo Metropolitano'
-  })
+  res.sendFile(path.join(__dirname + '/index.html'))
 })
 
 app.get('/students/:id', function(req, res) {
