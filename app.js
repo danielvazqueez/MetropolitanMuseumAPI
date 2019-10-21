@@ -44,11 +44,7 @@ app.get('/met', function(req, res) {
         } else {
           res.send({
             searchTerm: req.query.search,
-            artist: info.artist,
-            title: info.title,
-            year: info.year,
-            technique: info.technique,
-            metUrl: info.metUrl
+            ...info
           })
         }
       })

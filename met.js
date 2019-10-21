@@ -7,12 +7,11 @@ const queryObjects = (object, callback) => {
     if (error) {
       callback(error, undefined)
     } else {
-      const data = response.body.objectIDs
-      if (data.length == 0) {
+      const data = response.body
+      if (!data.objectIDs) {
         callback('No se encontro algun objeto relacionado', undefined)
       } else {
-        console.log(data[0])
-        callback(undefined, { id: data[0] })
+        callback(undefined, { id: data.objectIDs[0] })
       }
     }
   })
@@ -26,7 +25,6 @@ const queryObjectID = (id, callback) => {
       callback(error, undefined)
     } else {
       data = response.body
-      console.log('resp2 = ' + data)
       const info = {
         artist : data.constituents[0].name,
         title: data.title,
