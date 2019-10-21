@@ -5,7 +5,9 @@ const app = express()
 const port = process.env.PORT || 3000
 
 app.get('/', function(req, res) {
-
+  res.send({
+    info: 'Bienvenido a la pagina del Museo Metropolitano'
+  })
 })
 
 app.get('/students/:id', function(req, res) {
