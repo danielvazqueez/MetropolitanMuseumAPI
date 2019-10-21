@@ -7,8 +7,7 @@ const queryObjects = (object, callback) => {
     if (error) {
       callback(error, undefined)
     } else {
-      console.log(response)
-      const data = response.objectIDs
+      const data = response.body.objectIDs
       if (data.length == 0) {
         callback('No se encontro algun objeto relacionado', undefined)
       } else {
@@ -26,15 +25,21 @@ const queryObjectID = (id, callback) => {
     if (error) {
       callback(error, undefined)
     } else {
-      console.log('resp2 = ' + response)
+      data = response.body
+      console.log('resp2 = ' + data)
       const info = {
-        artist : response.constituents[0].name,
-        title: response.title,
-        year: response.objectEndDate,
-        technique: response.medium,
-        metUrl: response.objectURL
+        artist : data.constituents[0].name,
+        title: data.title,
+        year: data.objectEndDate,
+        technique: data.medium,
+        metUrl: data.objectURL
       }
       callback(undefined, info)
     }
   })
+}
+
+module.exports = {
+  queryObjectID,
+  queryObjects
 }

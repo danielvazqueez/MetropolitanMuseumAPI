@@ -1,8 +1,12 @@
 const express = require('express')
-const met = require('met.js')
+const met = require('./met')
 const app = express()
 
 const port = process.env.PORT || 3000
+
+app.get('/', function(req, res) {
+
+})
 
 app.get('/students/:id', function(req, res) {
   if (req.params.id != 'A01039545') {
@@ -38,7 +42,11 @@ app.get('/met', function(req, res) {
         } else {
           res.send({
             searchTerm: req.query.search,
-            info
+            artist: info.artist,
+            title: info.title,
+            year: info.year,
+            technique: info.technique,
+            metUrl: info.metUrl
           })
         }
       })
@@ -48,7 +56,7 @@ app.get('/met', function(req, res) {
 
 app.get('*', function(req, res) {
   res.send({
-    error: 'Ruta no valida, la unicas rutas validas son /student y /met'
+    error: 'Ruta no valida, la unicas rutas validas son /students y /met'
   })
 })
 
